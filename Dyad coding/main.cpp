@@ -22,15 +22,14 @@ int main()
 	} while (n != '1' && n != '2');
 
 	ifstream in;
-	string name = "C:\\Users\\HomoHikka\\Desktop\\input1.txt";
-	in.open(name, ios::binary);
-	//do //вместо N че то другое подставить не забыть
-	//{
-	//	cout << "Введите имя входного файла:\n";
-	//	getline(cin, name);
-	//	in.open(name);
-	//	if (!in.is_open()) cout << "Входной файл не найден!\n";
-	//} while (!in.is_open());
+	string name;
+	do
+	{
+		cout << "Введите имя входного файла:\n";
+		getline(cin, name);
+		in.open(name, ios::binary);
+		if (!in.is_open()) cout << "Входной файл не найден!\n";
+	} while (!in.is_open());
 
 	stringstream ss;
 	ss << in.rdbuf();
@@ -38,10 +37,13 @@ int main()
 	in.close();
 
 	ofstream out;
-	//cout << "Введите имя выходного файла:\n";
-	//getline(cin, name);
-	name = "C:\\Users\\HomoHikka\\Desktop\\output.txt";
-	out.open(name, ios::binary);
+	do
+	{
+		cout << "Введите имя выходного файла:\n";
+		getline(cin, name);
+		out.open(name, ios::binary);
+		if (!out.is_open()) cout << "Не удается открыть выходной файл!\n";
+	} while (!out.is_open());
 
 	if (n == '1')
 	{
@@ -113,5 +115,5 @@ int main()
 		}
 		out << text;
 	}
-	out.close(); //1
+	out.close();
 }
