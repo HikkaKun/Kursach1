@@ -49,12 +49,10 @@ int main()
 	{
 		set<char> text_chars;
 		map<string, int> dict;
-		int k = 1;
-		while (k < text.size())
+		for (int k = 1; k < text.size(); k++)
 		{
 			dict[text[k - 1] + ""s + text[k]] += 1;
 			text_chars.insert(text[k - 1]);
-			k++;
 		}
 
 		vector<char> free_chars;
@@ -68,15 +66,7 @@ int main()
 
 		dict.clear();
 
-		auto cmp = [](std::pair<int, string> const& a, std::pair<int, string> const& b)
-		{
-			return a.first > b.first;
-		};
-
-		sort(sort_dict.begin(), sort_dict.end(), cmp);
-
-		//for (auto i : sort_dict)
-		//	cout << i.first << " " << i.second << endl;
+		sort(sort_dict.begin(), sort_dict.end(), [](auto& a, auto& b) { return a.first > b.first; });
 
 		vector<pair<string, char>> d;
 
@@ -116,4 +106,6 @@ int main()
 		out << text;
 	}
 	out.close();
+
+	return 0;
 }
